@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flowgrammers Skills — 251 Skills PT-BR para Claude Code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-soft: #111114;
+    --neon: #e8006a;
+    --neon-2: #00e8d0;
+    --neon-soft: rgba(232,0,106,.18);
+    --neon-dim: rgba(232,0,106,.08);
+    --cyan-soft: rgba(0,232,208,.18);
+    --glass: rgba(255,255,255,.04);
+    --glass-border: rgba(255,255,255,.08);
+    --glass-strong: rgba(255,255,255,.06);
+    --text: #f5f5f7;
+    --muted: #9b9ba4;
+    --font-head: "Barlow", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-head);
+    overflow-x: hidden;
+  }
+  body {
+    background:
+      radial-gradient(1200px 800px at 85% -10%, rgba(232,0,106,.14), transparent 60%),
+      radial-gradient(900px 600px at -10% 110%, rgba(0,232,208,.08), transparent 70%),
+      #0a0a0a;
+    min-height: 100vh;
+    position: relative;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 200;
+    background: repeating-linear-gradient(180deg, rgba(255,255,255,.015) 0 1px, transparent 1px 3px);
+    mix-blend-mode: overlay;
+  }
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 199;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%);
+  }
+
+  .cursor-aura {
+    position: fixed; top: 0; left: 0;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,0,106,.18) 0%, rgba(232,0,106,.06) 35%, transparent 70%);
+    pointer-events: none; transform: translate(-50%, -50%);
+    mix-blend-mode: screen; z-index: 1;
+    transition: opacity .4s ease; will-change: transform;
+  }
+  @media (hover: none) { .cursor-aura { display: none; } }
+
+  .particles { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+  .particle {
+    position: absolute; width: 3px; height: 3px;
+    background: var(--neon); border-radius: 50%;
+    opacity: 0; box-shadow: 0 0 8px var(--neon);
+    animation: float-up var(--d, 18s) linear infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes float-up {
+    0% { transform: translate(var(--x, 0), 110vh) scale(.4); opacity: 0; }
+    10% { opacity: .8; }
+    90% { opacity: .4; }
+    100% { transform: translate(calc(var(--x, 0) + 100px), -10vh) scale(.8); opacity: 0; }
+  }
+
+  .deck { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 64px 48px 120px; }
+
+  .slide {
+    position: relative; padding: 56px 56px; margin-bottom: 48px;
+    border: 1px solid var(--glass-border); border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+    overflow: hidden;
+  }
+  .slide::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(232,0,106,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,0,106,.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+  .slide > * { position: relative; z-index: 1; }
+
+  .slide.hero {
+    padding: 96px 56px;
+    background: linear-gradient(180deg, rgba(232,0,106,.12), rgba(0,0,0,0) 60%), rgba(255,255,255,.02);
+  }
+
+  .brand-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 6px 14px; border-radius: 999px;
+    border: 1px solid var(--neon-soft); background: var(--neon-dim);
+    font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--neon);
+  }
+  .brand-tag .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 12px var(--neon); animation: blink 2s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .4; } }
+
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .eyebrow.neon { color: var(--neon); }
+
+  h1.hero-title {
+    font-size: clamp(48px, 7vw, 96px); font-weight: 800; line-height: .95;
+    letter-spacing: -.03em; margin: 24px 0 20px;
+  }
+  h1.hero-title .accent { color: var(--neon); text-shadow: 0 0 40px var(--neon-soft); }
+  h2.slide-title {
+    font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1;
+    letter-spacing: -.02em; margin: 18px 0 24px;
+  }
+  h3 { font-size: 22px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 12px; }
+
+  .lead { font-size: clamp(18px, 1.5vw, 22px); color: rgba(245,245,247,.78); line-height: 1.5; max-width: 900px; }
+
+  .neon-text { color: var(--neon); }
+  .cyan-text { color: var(--neon-2); }
+  .mono { font-family: var(--font-mono); }
+
+  .slide-num {
+    position: absolute; top: 24px; right: 28px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: .2em; color: var(--muted);
+  }
+
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 40px; }
+  .stat {
+    padding: 20px 24px; border: 1px solid var(--glass-border); border-radius: 16px;
+    background: var(--glass-strong);
+  }
+  .stat .num { font-size: 44px; font-weight: 800; color: var(--neon); line-height: 1; letter-spacing: -.02em; font-family: var(--font-mono); }
+  .stat .label { margin-top: 6px; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 24px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+
+  .panel {
+    padding: 28px 28px; border-radius: 18px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    position: relative;
+  }
+  .panel.accent { border-color: var(--neon-soft); background: linear-gradient(180deg, rgba(232,0,106,.08), rgba(0,0,0,0)); }
+
+  .skill-card {
+    padding: 16px 18px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    border-radius: 12px;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .skill-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--neon-soft);
+    background: var(--neon-dim);
+  }
+  .skill-card .name { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--text); }
+  .skill-card .desc { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+    border: 1px solid var(--glass-border); background: var(--glass);
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    color: var(--muted);
+  }
+  .chip.neon { color: var(--neon); border-color: var(--neon-soft); background: var(--neon-dim); }
+  .chip.cyan { color: var(--neon-2); border-color: rgba(0,232,208,.3); background: rgba(0,232,208,.1); }
+
+  .code-block {
+    font-family: var(--font-mono); font-size: 13px; line-height: 1.6;
+    padding: 20px 22px; border-radius: 12px;
+    background: rgba(0,0,0,.45); border: 1px solid var(--glass-border);
+    color: #e5e5e8; overflow-x: auto;
+    margin-top: 16px; margin-bottom: 8px;
+  }
+  .code-block .cmd-prefix { color: var(--neon); font-weight: 700; }
+  .code-block .comment { color: var(--muted); font-style: italic; }
+
+  .domain-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 24px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, rgba(232,0,106,.12), rgba(0,0,0,0));
+    border-left: 4px solid var(--neon);
+    margin-bottom: 20px;
+  }
+  .domain-header .ic { font-size: 32px; font-family: var(--font-mono); color: var(--neon); }
+  .domain-header h3 { margin: 0; font-size: 26px; }
+  .domain-header .count { margin-left: auto; font-family: var(--font-mono); color: var(--neon); font-weight: 700; font-size: 18px; }
+
+  .feature-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+
+  table { width: 100%; margin-top: 16px; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--glass-border); }
+  th { font-family: var(--font-mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  tbody tr:hover { background: var(--neon-dim); }
+
+  ul.check { list-style: none; padding: 0; margin-top: 12px; }
+  ul.check li { padding: 6px 0 6px 28px; position: relative; color: rgba(245,245,247,.82); }
+  ul.check li::before {
+    content: "▸"; position: absolute; left: 0; color: var(--neon); font-weight: 700;
+  }
+
+  .nav-top {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,.78); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 14px 28px;
+    display: flex; align-items: center; gap: 18px; justify-content: space-between;
+  }
+  .nav-top .title { font-family: var(--font-mono); font-size: 12px; letter-spacing: .2em; color: var(--neon); }
+  .nav-top .links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .nav-top a {
+    padding: 4px 10px; border-radius: 6px;
+    font-family: var(--font-mono); font-size: 11px; color: var(--muted);
+    text-decoration: none; border: 1px solid transparent;
+    transition: all .15s ease;
+  }
+  .nav-top a:hover { color: var(--neon); border-color: var(--neon-soft); background: var(--neon-dim); }
+
+  .highlight-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    margin-top: 32px;
+  }
+  .highlight-row .big-num {
+    font-family: var(--font-mono); font-size: 112px; font-weight: 800;
+    line-height: 1; color: var(--neon);
+    text-shadow: 0 0 40px var(--neon-soft);
+    letter-spacing: -.04em;
+  }
+  .highlight-row .big-num-label { font-size: 16px; color: var(--muted); margin-top: 8px; }
+
+  .footer-slide {
+    text-align: center; padding: 96px 56px;
+    background: linear-gradient(180deg, rgba(0,232,208,.08), rgba(232,0,106,.08));
+  }
+  .footer-slide .big { font-size: clamp(40px, 6vw, 72px); font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+  .footer-slide .sub { margin-top: 20px; font-size: 20px; color: var(--muted); }
+  .footer-slide .cta { margin-top: 32px; display: inline-block; padding: 14px 28px; border-radius: 999px; border: 1px solid var(--neon); color: var(--neon); font-family: var(--font-mono); font-weight: 600; text-decoration: none; background: var(--neon-dim); }
+
+  @media (max-width: 720px) {
+    .deck { padding: 24px 16px 60px; }
+    .slide { padding: 32px 24px; }
+    .slide.hero { padding: 56px 24px; }
+    .highlight-row { grid-template-columns: 1fr; }
+    .nav-top { padding: 10px 16px; }
+  }
+
+  @media print {
+    body::before, body::after, .cursor-aura, .particles, .nav-top { display: none !important; }
+    .slide { page-break-inside: avoid; margin-bottom: 24px; box-shadow: none; }
+    html, body { overflow: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-aura" id="aura"></div>
+<div class="particles" id="particles"></div>
+
+<nav class="nav-top">
+  <div class="title">⚡ FLOWGRAMMERS SKILLS · PT-BR</div>
+  <div class="links">
+    <a href="#hero">Início</a>
+    <a href="#overview">Visão</a>
+    <a href="#c-level">C-Level</a>
+    <a href="#engineering">Engineering</a>
+    <a href="#team">Team</a>
+    <a href="#marketing">Marketing</a>
+    <a href="#product">Product</a>
+    <a href="#growth">Growth</a>
+    <a href="#finance">Finance</a>
+    <a href="#pm">PM</a>
+    <a href="#raqm">RA/QM</a>
+    <a href="#how">Como usar</a>
+  </div>
+</nav>
+
+<main class="deck">
+
+<!-- ==================== SLIDE 1: HERO ==================== -->
+<section class="slide hero" id="hero">
+  <div class="slide-num mono">01 / 14</div>
+  <span class="brand-tag"><span class="dot"></span>FLOWGRAMMERS SKILLS v2.0</span>
+  <h1 class="hero-title">O maior acervo <span class="accent">PT-BR</span><br>de skills para<br>Claude Code.</h1>
+  <p class="lead">
+    <strong class="neon-text">251 skills prontas para produção</strong>, organizadas em 9 domínios,
+    100% em português do Brasil, adaptadas para LGPD, CLT, PIX, NF-e, ANVISA, Meta Ads BR e o contexto empresarial brasileiro.
+  </p>
+  <div class="stats-row">
+    <div class="stat"><div class="num">251</div><div class="label">Skills PT-BR</div></div>
+    <div class="stat"><div class="num">9</div><div class="label">Domínios</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">Claude Code</div></div>
+    <div class="stat"><div class="num">MIT</div><div class="label">Licença</div></div>
+  </div>
+  <div style="margin-top:32px;">
+    <span class="chip neon">Ric Neves</span>
+    <span class="chip">Flowgrammers</span>
+    <span class="chip">flowgrammers.com</span>
+    <span class="chip cyan">2026</span>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 2: VISÃO GERAL ==================== -->
+<section class="slide" id="overview">
+  <div class="slide-num mono">02 / 14</div>
+  <div class="eyebrow neon">01 · VISÃO GERAL</div>
+  <h2 class="slide-title">Nove domínios.<br>Um único idioma: <span class="neon-text">português BR.</span></h2>
+  <p class="lead">Cada skill é um perfil sênior com frameworks, checklists, playbooks e exemplos aplicáveis à realidade brasileira — do MEI ao enterprise regulado.</p>
+
+  <div class="grid-4" style="margin-top:40px;">
+    <div class="panel accent">
+      <div class="eyebrow neon">C-LEVEL</div>
+      <div class="mono" style="font-size:32px;font-weight:700;color:var(--neon);">37</div>
+      <div style="color:var(--muted);font-size:13px;">CEO, CTO, CFO, COO, CPO, CMO, CRO, CISO, CHRO, CDO, CAIO, CLO + orquestração</div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">ENGINEERING</div>
+      <div class="mono" style="font-size:32px;font-weight:700;color:var(--neon-2);">60</div>
+      <div style="color:var(--muted);font-size:13px;">RAG, MCP, CI/CD, DB, observabilidade, segurança, releases</div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">ENG TEAM</div>
+      <div class="mono" style="font-size:32px;font-weight:700;color:var(--neon-2);">54</div>
+      <div style="color:var(--muted);font-size:13px;">Frontend, Backend, DevOps, SRE, Mobile iOS/Android, QA, Security</div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">MARKETING</div>
+      <div class="mono" style="font-size:32px;font-weight:700;color:var(--neon-2);">45</div>
+      <div style="color:var(--muted);font-size:13px;">SEO, AI SEO, CRO, Ads, Conteúdo, Email, Psicologia</div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">PRODUCT</div>
+      <div class="mono" style="font-size:32px;font-weight:700;color:var(--neon-2);">18</div>
+      <div style="color:var(--muted);font-size:13px;">PM, Growth PM, PO Agile, UX, UI Design System, Analytics</div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">GROWTH/BIZ</div>
+      <div class="mono" style="font-size:32px;font-weight:700;color:var(--neon-2);">7</div>
+      <div style="color:var(--muted);font-size:13px;">Customer Success, Account Manager, Partnerships, Sales Eng, RevOps</div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">FINANCE</div>
+      <div class="mono" style="font-size:32px;font-weight:700;color:var(--neon-2);">6</div>
+      <div style="color:var(--muted);font-size:13px;">Controller, FP&amp;A, Financial Analyst, SaaS Metrics, Investimentos</div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">PM (PROJECT)</div>
+      <div class="mono" style="font-size:32px;font-weight:700;color:var(--neon-2);">10</div>
+      <div style="color:var(--muted);font-size:13px;">Senior PM, Program Manager, Scrum, Jira, Confluence, Atlassian</div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">RA/QM</div>
+      <div class="mono" style="font-size:32px;font-weight:700;color:var(--neon-2);">14</div>
+      <div style="color:var(--muted);font-size:13px;">ISO 13485, MDR, FDA, ISO 27001, LGPD, SOC2, CAPA, Riscos</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:32px;">
+    <div class="eyebrow neon">CONTEXTO 100% BR</div>
+    <div class="feature-row">
+      <span class="chip neon">LGPD</span>
+      <span class="chip neon">CLT / PJ / MEI</span>
+      <span class="chip neon">Simples / Presumido / Real</span>
+      <span class="chip neon">NF-e / SPED / ECD</span>
+      <span class="chip neon">PIX / Open Finance</span>
+      <span class="chip neon">ANVISA / ANATEL / BACEN</span>
+      <span class="chip neon">Meta Ads BR / Google Ads</span>
+      <span class="chip neon">Receita em R$</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 3: COMO USAR ==================== -->
+<section class="slide" id="how-start">
+  <div class="slide-num mono">03 / 14</div>
+  <div class="eyebrow neon">02 · INSTALAÇÃO RÁPIDA</div>
+  <h2 class="slide-title">Instale uma vez.<br>Use para <span class="neon-text">sempre.</span></h2>
+
+  <div class="grid-2">
+    <div class="panel">
+      <h3><span class="mono neon-text">1.</span> Clone o repositório</h3>
+      <div class="code-block">
+<span class="comment"># Clone o repo</span>
+<span class="cmd-prefix">$</span> git clone https://github.com/flowgrammers/flowgrammers-v2.git
+<span class="cmd-prefix">$</span> cd flowgrammers-v2
+
+<span class="comment"># Torne as skills disponíveis globalmente</span>
+<span class="cmd-prefix">$</span> ./install.sh
+      </div>
+    </div>
+
+    <div class="panel accent">
+      <h3><span class="mono neon-text">2.</span> Use uma skill</h3>
+      <div class="code-block">
+<span class="comment"># Leia uma skill específica</span>
+<span class="cmd-prefix">claude&gt;</span> /read c-level-advisor/ceo-advisor/SKILL.md
+
+<span class="comment"># Ou peça em linguagem natural</span>
+<span class="cmd-prefix">claude&gt;</span> Atue como CFO e revise
+        meus unit economics de SaaS.
+
+<span class="cmd-prefix">claude&gt;</span> Como Senior Frontend, revise
+        este componente React.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:24px;">
+    <h3>Comandos slash disponíveis</h3>
+    <div class="feature-row">
+      <span class="chip mono">/tdd</span>
+      <span class="chip mono">/prd</span>
+      <span class="chip mono">/sprint-plan</span>
+      <span class="chip mono">/saas-health</span>
+      <span class="chip mono">/tech-debt</span>
+      <span class="chip mono">/rice</span>
+      <span class="chip mono">/retro</span>
+      <span class="chip mono">/changelog</span>
+      <span class="chip mono">/okr</span>
+      <span class="chip mono">/persona</span>
+      <span class="chip mono">/user-story</span>
+      <span class="chip mono">/a11y-audit</span>
+      <span class="chip mono">/pipeline</span>
+      <span class="chip mono">/security-review</span>
+      <span class="chip mono">/sprint-health</span>
+      <span class="chip mono">/project-health</span>
+      <span class="chip mono">/competitive-matrix</span>
+      <span class="chip mono">/financial-health</span>
+      <span class="chip mono">/seo-auditor</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 4: C-LEVEL ==================== -->
+<section class="slide" id="c-level">
+  <div class="slide-num mono">04 / 14</div>
+  <div class="eyebrow neon">03 · C-LEVEL ADVISOR</div>
+  <h2 class="slide-title">Seu conselho executivo<br>em <span class="neon-text">37 skills.</span></h2>
+  <p class="lead">10 papéis C-suite + Chief of Staff que roteia perguntas + protocolo de reunião de conselho com isolamento de análise e debate cruzado.</p>
+
+  <div class="domain-header">
+    <div class="ic">#</div>
+    <h3>Executivos C-Suite</h3>
+    <div class="count">13 papéis</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">ceo-advisor</div><div class="desc">Visão, estratégia, fundraising, board</div></div>
+    <div class="skill-card"><div class="name">cto-advisor</div><div class="desc">Arquitetura, build vs buy, tech debt</div></div>
+    <div class="skill-card"><div class="name">cfo-advisor</div><div class="desc">Capital, unit economics, reporting</div></div>
+    <div class="skill-card"><div class="name">coo-advisor</div><div class="desc">Operações, processos, escala</div></div>
+    <div class="skill-card"><div class="name">cpo-advisor</div><div class="desc">Roadmap, discovery, priorização</div></div>
+    <div class="skill-card"><div class="name">cmo-advisor</div><div class="desc">GTM, brand, demand gen</div></div>
+    <div class="skill-card"><div class="name">cro-advisor</div><div class="desc">Revenue, pipeline, sales motion</div></div>
+    <div class="skill-card"><div class="name">ciso-advisor</div><div class="desc">Segurança, compliance, riscos</div></div>
+    <div class="skill-card"><div class="name">chro-advisor</div><div class="desc">Cultura, talento, performance</div></div>
+    <div class="skill-card" style="border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">cdo-advisor ★</div><div class="desc">Dados, governança, LGPD, monetização</div></div>
+    <div class="skill-card" style="border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">caio-advisor ★</div><div class="desc">IA corporativa, responsible AI, ROI</div></div>
+    <div class="skill-card" style="border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">clo-advisor ★</div><div class="desc">Jurídico, compliance BR, M&amp;A, LGPD</div></div>
+    <div class="skill-card"><div class="name">executive-mentor</div><div class="desc">Carreira, liderança, coaching</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Orquestração e Operações</h3>
+    <div class="count">8 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">chief-of-staff</div><div class="desc">Roteamento inteligente de perguntas</div></div>
+    <div class="skill-card"><div class="name">board-meeting</div><div class="desc">Reunião de conselho em 3 fases</div></div>
+    <div class="skill-card"><div class="name">board-deck-builder</div><div class="desc">Montagem de apresentação</div></div>
+    <div class="skill-card"><div class="name">cs-onboard</div><div class="desc">Onboarding do fundador</div></div>
+    <div class="skill-card"><div class="name">agent-protocol</div><div class="desc">Comunicação entre agentes</div></div>
+    <div class="skill-card"><div class="name">context-engine</div><div class="desc">Gestão de contexto empresarial</div></div>
+    <div class="skill-card"><div class="name">decision-logger</div><div class="desc">Registro de decisões</div></div>
+    <div class="skill-card"><div class="name">company-os</div><div class="desc">Sistema operacional da empresa</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Capacidades Transversais</h3>
+    <div class="count">16 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">competitive-intel</div><div class="desc">Inteligência competitiva</div></div>
+    <div class="skill-card"><div class="name">scenario-war-room</div><div class="desc">Cenários e crise</div></div>
+    <div class="skill-card"><div class="name">org-health-diagnostic</div><div class="desc">Diagnóstico organizacional</div></div>
+    <div class="skill-card"><div class="name">ma-playbook</div><div class="desc">Playbook de M&amp;A</div></div>
+    <div class="skill-card"><div class="name">intl-expansion</div><div class="desc">Expansão internacional</div></div>
+    <div class="skill-card"><div class="name">culture-architect</div><div class="desc">Arquitetura de cultura</div></div>
+    <div class="skill-card"><div class="name">founder-coach</div><div class="desc">Coach do fundador</div></div>
+    <div class="skill-card"><div class="name">strategic-alignment</div><div class="desc">Alinhamento estratégico</div></div>
+    <div class="skill-card"><div class="name">change-management</div><div class="desc">Gestão de mudanças</div></div>
+    <div class="skill-card"><div class="name">internal-narrative</div><div class="desc">Narrativa interna</div></div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 5: ENGINEERING ==================== -->
+<section class="slide" id="engineering">
+  <div class="slide-num mono">05 / 14</div>
+  <div class="eyebrow neon">04 · ENGINEERING AVANÇADO</div>
+  <h2 class="slide-title">Plataforma, agentes e<br>infra em <span class="neon-text">60 skills.</span></h2>
+  <p class="lead">RAG, MCP, CI/CD, observabilidade, segurança, releases. Design de agentes até gestão de dívida técnica.</p>
+
+  <div class="domain-header">
+    <div class="ic">#</div>
+    <h3>Design de Agentes &amp; IA</h3>
+    <div class="count">10 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">agent-designer</div><div class="desc">Design de agentes autônomos</div></div>
+    <div class="skill-card"><div class="name">agent-workflow-designer</div><div class="desc">Orquestração de workflows</div></div>
+    <div class="skill-card"><div class="name">agenthub</div><div class="desc">Hub multi-agente coordenado</div></div>
+    <div class="skill-card"><div class="name">autoresearch-agent</div><div class="desc">Pesquisa automatizada</div></div>
+    <div class="skill-card"><div class="name">rag-architect</div><div class="desc">Arquitetura de RAG corporativo</div></div>
+    <div class="skill-card"><div class="name">mcp-server-builder</div><div class="desc">Construção de servidores MCP</div></div>
+    <div class="skill-card"><div class="name">prompt-governance</div><div class="desc">Governança de prompts</div></div>
+    <div class="skill-card"><div class="name">llm-cost-optimizer</div><div class="desc">Otimização de custo LLM</div></div>
+    <div class="skill-card"><div class="name">karpathy-coder</div><div class="desc">Métodos Karpathy</div></div>
+    <div class="skill-card"><div class="name">self-eval</div><div class="desc">Auto-avaliação de agentes</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>DevOps, CI/CD &amp; Infra</h3>
+    <div class="count">12 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">ci-cd-pipeline-builder</div><div class="desc">Pipelines multi-stack</div></div>
+    <div class="skill-card"><div class="name">docker-development</div><div class="desc">Docker + Compose + hardening</div></div>
+    <div class="skill-card"><div class="name">terraform-patterns</div><div class="desc">IaC com módulos reusáveis</div></div>
+    <div class="skill-card"><div class="name">helm-chart-builder</div><div class="desc">Charts Helm para K8s</div></div>
+    <div class="skill-card"><div class="name">release-manager</div><div class="desc">Gestão de releases</div></div>
+    <div class="skill-card"><div class="name">migration-architect</div><div class="desc">Migrações de sistema</div></div>
+    <div class="skill-card"><div class="name">observability-designer</div><div class="desc">Observabilidade 3 pilares</div></div>
+    <div class="skill-card"><div class="name">performance-profiler</div><div class="desc">Profiling e otimização</div></div>
+    <div class="skill-card"><div class="name">runbook-generator</div><div class="desc">Runbooks operacionais</div></div>
+    <div class="skill-card"><div class="name">env-secrets-manager</div><div class="desc">Gestão de env &amp; secrets</div></div>
+    <div class="skill-card"><div class="name">secrets-vault-manager</div><div class="desc">Vault e rotação</div></div>
+    <div class="skill-card"><div class="name">monorepo-navigator</div><div class="desc">Turborepo, Nx, pnpm</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Banco de Dados &amp; API</h3>
+    <div class="count">9 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">database-designer</div><div class="desc">Design de banco relacional</div></div>
+    <div class="skill-card"><div class="name">database-schema-designer</div><div class="desc">Modelagem de schemas</div></div>
+    <div class="skill-card"><div class="name">sql-database-assistant</div><div class="desc">Assistente de SQL</div></div>
+    <div class="skill-card"><div class="name">data-quality-auditor</div><div class="desc">Auditoria de qualidade de dados</div></div>
+    <div class="skill-card"><div class="name">statistical-analyst</div><div class="desc">Análise estatística</div></div>
+    <div class="skill-card"><div class="name">api-design-reviewer</div><div class="desc">Revisão de design de API</div></div>
+    <div class="skill-card"><div class="name">api-test-suite-builder</div><div class="desc">Suites de teste de API</div></div>
+    <div class="skill-card"><div class="name">browser-automation</div><div class="desc">Automação de browser</div></div>
+    <div class="skill-card"><div class="name">interview-system-designer</div><div class="desc">System design interviews</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Qualidade, Docs &amp; Toolchain</h3>
+    <div class="count">29 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">pr-review-expert</div><div class="desc">Review de pull requests</div></div>
+    <div class="skill-card"><div class="name">changelog-generator</div><div class="desc">Geração de changelogs</div></div>
+    <div class="skill-card"><div class="name">codebase-onboarding</div><div class="desc">Onboarding em código novo</div></div>
+    <div class="skill-card"><div class="name">code-tour</div><div class="desc">Tour guiado pelo código</div></div>
+    <div class="skill-card"><div class="name">llm-wiki</div><div class="desc">Wiki otimizado para LLM</div></div>
+    <div class="skill-card"><div class="name">demo-video</div><div class="desc">Vídeos demo automatizados</div></div>
+    <div class="skill-card"><div class="name">skill-security-auditor</div><div class="desc">Auditoria de skills</div></div>
+    <div class="skill-card"><div class="name">skill-tester</div><div class="desc">Teste de skills</div></div>
+    <div class="skill-card"><div class="name">tech-debt-tracker</div><div class="desc">Tracker de dívida técnica</div></div>
+    <div class="skill-card"><div class="name">tc-tracker</div><div class="desc">Tracker de mudanças técnicas</div></div>
+    <div class="skill-card"><div class="name">dependency-auditor</div><div class="desc">Auditoria de dependências</div></div>
+    <div class="skill-card"><div class="name">git-worktree-manager</div><div class="desc">Gestor de worktrees</div></div>
+    <div class="skill-card"><div class="name">focused-fix</div><div class="desc">Fix focado em bugs</div></div>
+    <div class="skill-card"><div class="name">spec-driven-workflow</div><div class="desc">Workflow guiado por spec</div></div>
+    <div class="skill-card"><div class="name">behuman</div><div class="desc">IA com tom humano</div></div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 6: ENGINEERING TEAM ==================== -->
+<section class="slide" id="team">
+  <div class="slide-num mono">06 / 14</div>
+  <div class="eyebrow neon">05 · ENGINEERING TEAM</div>
+  <h2 class="slide-title">Times sêniores prontos em<br><span class="neon-text">54 skills.</span></h2>
+  <p class="lead">Frontend, backend, mobile, cloud, SRE, QA, segurança, ML, CV. Cada perfil é um sênior com arquitetura, patterns e checklists em PT-BR.</p>
+
+  <div class="domain-header">
+    <div class="ic">#</div>
+    <h3>Desenvolvimento</h3>
+    <div class="count">12 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">senior-frontend</div><div class="desc">React, Next.js, Vue, design systems</div></div>
+    <div class="skill-card"><div class="name">senior-backend</div><div class="desc">APIs, microserviços, queues</div></div>
+    <div class="skill-card"><div class="name">senior-fullstack</div><div class="desc">Stack end-to-end</div></div>
+    <div class="skill-card" style="border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">senior-mobile-ios ★</div><div class="desc">Swift 6, SwiftUI, Xcode Cloud</div></div>
+    <div class="skill-card" style="border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">senior-mobile-android ★</div><div class="desc">Kotlin, Compose, Play Store</div></div>
+    <div class="skill-card"><div class="name">senior-architect</div><div class="desc">Arquitetura de sistemas</div></div>
+    <div class="skill-card"><div class="name">senior-devops</div><div class="desc">CI/CD, K8s, cloud</div></div>
+    <div class="skill-card" style="border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">senior-sre ★</div><div class="desc">SLO, error budget, postmortems</div></div>
+    <div class="skill-card"><div class="name">senior-qa</div><div class="desc">QA, estratégia de testes</div></div>
+    <div class="skill-card"><div class="name">senior-prompt-engineer</div><div class="desc">Engenharia de prompts</div></div>
+    <div class="skill-card"><div class="name">tdd-guide</div><div class="desc">TDD disciplina rigorosa</div></div>
+    <div class="skill-card"><div class="name">code-reviewer</div><div class="desc">Code review sênior</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Data, ML &amp; IA</h3>
+    <div class="count">5 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">senior-data-engineer</div><div class="desc">Pipelines, lakehouse, streaming</div></div>
+    <div class="skill-card"><div class="name">senior-data-scientist</div><div class="desc">A/B, DiD, ML supervisionado</div></div>
+    <div class="skill-card"><div class="name">senior-ml-engineer</div><div class="desc">MLOps, serving, monitoring</div></div>
+    <div class="skill-card"><div class="name">senior-computer-vision</div><div class="desc">CV, YOLO, segmentação</div></div>
+    <div class="skill-card"><div class="name">snowflake-development</div><div class="desc">Snowflake dev profissional</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Cloud &amp; Operações</h3>
+    <div class="count">7 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">aws-solution-architect</div><div class="desc">Arquitetura AWS</div></div>
+    <div class="skill-card"><div class="name">azure-cloud-architect</div><div class="desc">Arquitetura Azure</div></div>
+    <div class="skill-card"><div class="name">gcp-cloud-architect</div><div class="desc">Arquitetura GCP</div></div>
+    <div class="skill-card"><div class="name">google-workspace-cli</div><div class="desc">Operações GWS</div></div>
+    <div class="skill-card"><div class="name">ms365-tenant-manager</div><div class="desc">Tenant Microsoft 365</div></div>
+    <div class="skill-card"><div class="name">incident-commander</div><div class="desc">Liderança de incidentes</div></div>
+    <div class="skill-card"><div class="name">incident-response</div><div class="desc">Resposta tática</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Segurança &amp; Red Team</h3>
+    <div class="count">7 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">senior-security</div><div class="desc">Estratégia de segurança</div></div>
+    <div class="skill-card"><div class="name">senior-secops</div><div class="desc">Operações de segurança</div></div>
+    <div class="skill-card"><div class="name">cloud-security</div><div class="desc">Segurança em cloud</div></div>
+    <div class="skill-card"><div class="name">ai-security</div><div class="desc">Segurança de sistemas IA</div></div>
+    <div class="skill-card"><div class="name">security-pen-testing</div><div class="desc">Pen testing</div></div>
+    <div class="skill-card"><div class="name">red-team</div><div class="desc">Red team / adversarial</div></div>
+    <div class="skill-card"><div class="name">threat-detection</div><div class="desc">Detecção de ameaças</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Avaliação &amp; Especialidades</h3>
+    <div class="count">7 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">playwright-pro</div><div class="desc">Playwright E2E avançado</div></div>
+    <div class="skill-card"><div class="name">adversarial-reviewer</div><div class="desc">Revisão adversarial</div></div>
+    <div class="skill-card"><div class="name">self-improving-agent</div><div class="desc">Agente auto-melhora</div></div>
+    <div class="skill-card"><div class="name">a11y-audit</div><div class="desc">Auditoria WCAG 2.2</div></div>
+    <div class="skill-card"><div class="name">epic-design</div><div class="desc">Design 2.5D cinematográfico</div></div>
+    <div class="skill-card"><div class="name">email-template-builder</div><div class="desc">Templates de email transacional</div></div>
+    <div class="skill-card"><div class="name">stripe-integration-expert</div><div class="desc">Integração Stripe</div></div>
+    <div class="skill-card"><div class="name">tech-stack-evaluator</div><div class="desc">Avaliação de stacks</div></div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 7: MARKETING ==================== -->
+<section class="slide" id="marketing">
+  <div class="slide-num mono">07 / 14</div>
+  <div class="eyebrow neon">06 · MARKETING</div>
+  <h2 class="slide-title">Do funil ao tráfego pago:<br><span class="neon-text">45 skills.</span></h2>
+  <p class="lead">SEO tradicional + AI SEO, CRO por etapa, Ads, Email, Conteúdo, Psicologia, Analytics — otimizados para o mercado brasileiro.</p>
+
+  <div class="domain-header">
+    <div class="ic">#</div>
+    <h3>SEO &amp; Descoberta</h3>
+    <div class="count">6 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">seo-audit</div><div class="desc">Auditoria SEO técnica</div></div>
+    <div class="skill-card"><div class="name">ai-seo</div><div class="desc">SEO para AI Overviews</div></div>
+    <div class="skill-card"><div class="name">programmatic-seo</div><div class="desc">SEO programático</div></div>
+    <div class="skill-card"><div class="name">schema-markup</div><div class="desc">Schema.org / JSON-LD</div></div>
+    <div class="skill-card"><div class="name">site-architecture</div><div class="desc">Arquitetura de site</div></div>
+    <div class="skill-card"><div class="name">app-store-optimization</div><div class="desc">ASO (App Store + Play)</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>CRO (Conversion Rate Optimization)</h3>
+    <div class="count">7 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">ab-test-setup</div><div class="desc">Setup de A/B test</div></div>
+    <div class="skill-card"><div class="name">page-cro</div><div class="desc">CRO em páginas</div></div>
+    <div class="skill-card"><div class="name">form-cro</div><div class="desc">CRO em formulários</div></div>
+    <div class="skill-card"><div class="name">popup-cro</div><div class="desc">CRO em popups</div></div>
+    <div class="skill-card"><div class="name">signup-flow-cro</div><div class="desc">CRO em signup</div></div>
+    <div class="skill-card"><div class="name">onboarding-cro</div><div class="desc">CRO em onboarding</div></div>
+    <div class="skill-card"><div class="name">paywall-upgrade-cro</div><div class="desc">CRO em paywall</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Conteúdo &amp; Copy</h3>
+    <div class="count">10 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">content-strategy</div><div class="desc">Estratégia de conteúdo</div></div>
+    <div class="skill-card"><div class="name">content-creator</div><div class="desc">Criação de conteúdo</div></div>
+    <div class="skill-card"><div class="name">content-production</div><div class="desc">Produção em escala</div></div>
+    <div class="skill-card"><div class="name">content-humanizer</div><div class="desc">Humanização de texto IA</div></div>
+    <div class="skill-card"><div class="name">copywriting</div><div class="desc">Copywriting direto</div></div>
+    <div class="skill-card"><div class="name">copy-editing</div><div class="desc">Edição e revisão</div></div>
+    <div class="skill-card"><div class="name">brand-guidelines</div><div class="desc">Manual de marca</div></div>
+    <div class="skill-card"><div class="name">video-content-strategist</div><div class="desc">Estratégia de vídeo</div></div>
+    <div class="skill-card"><div class="name">social-content</div><div class="desc">Conteúdo para redes</div></div>
+    <div class="skill-card"><div class="name">ad-creative</div><div class="desc">Criativo para Ads</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Aquisição, Retenção &amp; Ops</h3>
+    <div class="count">22 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">paid-ads</div><div class="desc">Meta Ads, Google Ads BR</div></div>
+    <div class="skill-card"><div class="name">cold-email</div><div class="desc">Cold email outbound</div></div>
+    <div class="skill-card"><div class="name">email-sequence</div><div class="desc">Sequências de email</div></div>
+    <div class="skill-card"><div class="name">churn-prevention</div><div class="desc">Prevenção de churn</div></div>
+    <div class="skill-card"><div class="name">referral-program</div><div class="desc">Programa de indicação</div></div>
+    <div class="skill-card"><div class="name">pricing-strategy</div><div class="desc">Estratégia de preço</div></div>
+    <div class="skill-card"><div class="name">launch-strategy</div><div class="desc">Estratégia de lançamento</div></div>
+    <div class="skill-card"><div class="name">free-tool-strategy</div><div class="desc">Ferramentas grátis como iscas</div></div>
+    <div class="skill-card"><div class="name">marketing-strategy-pmm</div><div class="desc">PMM strategy</div></div>
+    <div class="skill-card"><div class="name">marketing-demand-acquisition</div><div class="desc">Demand &amp; acquisition</div></div>
+    <div class="skill-card"><div class="name">marketing-psychology</div><div class="desc">Psicologia de marketing</div></div>
+    <div class="skill-card"><div class="name">marketing-ops</div><div class="desc">Martech &amp; automação</div></div>
+    <div class="skill-card"><div class="name">marketing-ideas</div><div class="desc">Geração de ideias</div></div>
+    <div class="skill-card"><div class="name">marketing-context</div><div class="desc">Contexto de marketing</div></div>
+    <div class="skill-card"><div class="name">social-media-manager</div><div class="desc">Gestão de redes</div></div>
+    <div class="skill-card"><div class="name">social-media-analyzer</div><div class="desc">Análise de redes</div></div>
+    <div class="skill-card"><div class="name">x-twitter-growth</div><div class="desc">Growth no X/Twitter</div></div>
+    <div class="skill-card"><div class="name">competitor-alternatives</div><div class="desc">Páginas "alternativas a"</div></div>
+    <div class="skill-card"><div class="name">campaign-analytics</div><div class="desc">Analytics de campanha</div></div>
+    <div class="skill-card"><div class="name">analytics-tracking</div><div class="desc">Setup de tracking</div></div>
+    <div class="skill-card"><div class="name">prompt-engineer-toolkit</div><div class="desc">Toolkit de prompts mkt</div></div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 8: PRODUCT ==================== -->
+<section class="slide" id="product">
+  <div class="slide-num mono">08 / 14</div>
+  <div class="eyebrow neon">07 · PRODUCT TEAM</div>
+  <h2 class="slide-title">PM, PO, UX, UI<br>em <span class="neon-text">18 skills.</span></h2>
+  <p class="lead">Do discovery ao analytics. Com framework RICE, landing generator, spec-to-repo e Growth PM dedicado.</p>
+
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">product-manager-toolkit</div><div class="desc">Kit completo PM (RICE, ICE, RFC)</div></div>
+    <div class="skill-card" style="border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">growth-product-manager ★</div><div class="desc">NSM, AARRR, growth loops, PLG</div></div>
+    <div class="skill-card"><div class="name">agile-product-owner</div><div class="desc">PO Agile (backlog, sprints)</div></div>
+    <div class="skill-card"><div class="name">product-strategist</div><div class="desc">Estratégia de produto</div></div>
+    <div class="skill-card"><div class="name">product-discovery</div><div class="desc">Discovery contínuo</div></div>
+    <div class="skill-card"><div class="name">product-analytics</div><div class="desc">Analytics de produto</div></div>
+    <div class="skill-card"><div class="name">experiment-designer</div><div class="desc">Design de experimentos</div></div>
+    <div class="skill-card"><div class="name">competitive-teardown</div><div class="desc">Análise de concorrentes</div></div>
+    <div class="skill-card"><div class="name">roadmap-communicator</div><div class="desc">Comunicação de roadmap</div></div>
+    <div class="skill-card"><div class="name">research-summarizer</div><div class="desc">Síntese de pesquisa</div></div>
+    <div class="skill-card"><div class="name">ux-researcher-designer</div><div class="desc">UX research e design</div></div>
+    <div class="skill-card"><div class="name">ui-design-system</div><div class="desc">Design system escalável</div></div>
+    <div class="skill-card"><div class="name">apple-hig-expert</div><div class="desc">Human Interface Guidelines</div></div>
+    <div class="skill-card"><div class="name">landing-page-generator</div><div class="desc">Gerador de landing pages</div></div>
+    <div class="skill-card"><div class="name">saas-scaffolder</div><div class="desc">Scaffolder de SaaS</div></div>
+    <div class="skill-card"><div class="name">spec-to-repo</div><div class="desc">Spec → repositório pronto</div></div>
+    <div class="skill-card"><div class="name">code-to-prd</div><div class="desc">Engenharia reversa código → PRD</div></div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 9: GROWTH / BIZ ==================== -->
+<section class="slide" id="growth">
+  <div class="slide-num mono">09 / 14</div>
+  <div class="eyebrow neon">08 · BUSINESS &amp; GROWTH</div>
+  <h2 class="slide-title">Vendas, parcerias e<br>retenção em <span class="neon-text">7 skills.</span></h2>
+  <p class="lead">Customer Success → Account Manager → Partnerships → Sales Eng → RevOps → Contratos. Cobertura completa do customer lifecycle pós-fechamento.</p>
+
+  <div class="grid-2">
+    <div class="panel accent">
+      <div class="eyebrow neon">RETENÇÃO &amp; EXPANSÃO</div>
+      <div class="skill-card" style="margin-top:12px;"><div class="name">customer-success-manager</div><div class="desc">Health scoring, onboarding, adoção, prevenção de churn. NRR, GRR. QBRs táticas.</div></div>
+      <div class="skill-card" style="margin-top:12px;border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">account-manager ★</div><div class="desc">Account Plan, QBR, EBR, renovação, upsell, cross-sell, stakeholder map.</div></div>
+      <div class="skill-card" style="margin-top:12px;"><div class="name">sales-engineer</div><div class="desc">RFP, POCs, arquitetura técnica de solução, demos executivas.</div></div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow neon">AQUISIÇÃO &amp; CANAL</div>
+      <div class="skill-card" style="margin-top:12px;border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">partnerships-manager ★</div><div class="desc">Canais, resellers, SIs, co-marketing, marketplaces, deal registration, MDF.</div></div>
+      <div class="skill-card" style="margin-top:12px;"><div class="name">revenue-operations</div><div class="desc">RevOps: forecast, pipeline, comp plan, attribution. Unit economics.</div></div>
+      <div class="skill-card" style="margin-top:12px;"><div class="name">contract-and-proposal-writer</div><div class="desc">Propostas B2B, MSA, SOW, NDA, DPA. Negociação de termos.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 10: FINANCE ==================== -->
+<section class="slide" id="finance">
+  <div class="slide-num mono">10 / 14</div>
+  <div class="eyebrow neon">09 · FINANCE</div>
+  <h2 class="slide-title">Do contador ao CFO:<br><span class="neon-text">6 skills financeiras.</span></h2>
+  <p class="lead">Novo: Controller (NF-e, SPED, ECD brasileiros) e FP&amp;A (forecast, unit economics, board deck) complementam o financial-analyst, saas-metrics e investment advisor.</p>
+
+  <div class="grid-2">
+    <div class="panel accent">
+      <div class="eyebrow neon">OPERAÇÃO &amp; PLANEJAMENTO</div>
+      <div class="skill-card" style="margin-top:12px;border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">controller-contador ★</div><div class="desc">Contabilidade BR: Simples/Presumido/Real, NF-e, SPED ICMS/Fiscal/Contribuições, ECD, ECF, fechamento mensal, conciliações, controle interno.</div></div>
+      <div class="skill-card" style="margin-top:12px;border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">fpa-analyst ★</div><div class="desc">FP&amp;A: budget anual, rolling forecast, variance analysis, modelo 3-statements, unit economics, board deck.</div></div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow neon">ANÁLISE &amp; VALUATION</div>
+      <div class="skill-card" style="margin-top:12px;"><div class="name">financial-analyst</div><div class="desc">Análise de índices, DCF, valuation, WACC, sensibilidade.</div></div>
+      <div class="skill-card" style="margin-top:12px;"><div class="name">saas-metrics-coach</div><div class="desc">ARR, MRR, CAC, LTV, Magic Number, Rule of 40, Burn Multiple.</div></div>
+      <div class="skill-card" style="margin-top:12px;"><div class="name">business-investment-advisor</div><div class="desc">Decisões de CapEx, ROI, payback, VPL, TIR.</div></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:24px;">
+    <div class="eyebrow neon">ESPECIALIZAÇÃO BRASILEIRA</div>
+    <div class="feature-row">
+      <span class="chip neon">Simples Nacional</span>
+      <span class="chip neon">Fator R</span>
+      <span class="chip neon">Lucro Presumido</span>
+      <span class="chip neon">Lucro Real</span>
+      <span class="chip neon">NF-e / NFS-e / CT-e</span>
+      <span class="chip neon">SPED Fiscal / Contribuições</span>
+      <span class="chip neon">ECD / ECF</span>
+      <span class="chip neon">DCTFWeb / EFD-Reinf</span>
+      <span class="chip neon">IRPJ / CSLL</span>
+      <span class="chip neon">ICMS / PIS / COFINS / ISS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 11: PROJECT MANAGEMENT ==================== -->
+<section class="slide" id="pm">
+  <div class="slide-num mono">11 / 14</div>
+  <div class="eyebrow neon">10 · PROJECT MANAGEMENT</div>
+  <h2 class="slide-title">Execução de projetos<br>em <span class="neon-text">10 skills.</span></h2>
+  <p class="lead">PM, Program Manager, Scrum, Jira, Confluence. Integração nativa Atlassian MCP para automação ao vivo.</p>
+
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">senior-pm</div><div class="desc">Project Manager sênior, 1 projeto</div></div>
+    <div class="skill-card" style="border-color:var(--neon-soft);background:var(--neon-dim);"><div class="name neon-text">program-manager ★</div><div class="desc">Programa multi-projeto, RAID log, steering committee</div></div>
+    <div class="skill-card"><div class="name">scrum-master</div><div class="desc">Rituais, velocity, impediments</div></div>
+    <div class="skill-card"><div class="name">jira-expert</div><div class="desc">JQL avançado, workflows</div></div>
+    <div class="skill-card"><div class="name">confluence-expert</div><div class="desc">Knowledge base, templates</div></div>
+    <div class="skill-card"><div class="name">atlassian-admin</div><div class="desc">Admin Jira + Confluence</div></div>
+    <div class="skill-card"><div class="name">atlassian-templates</div><div class="desc">Templates Atlassian</div></div>
+    <div class="skill-card"><div class="name">team-communications</div><div class="desc">Comunicação de time</div></div>
+    <div class="skill-card"><div class="name">meeting-analyzer</div><div class="desc">Analisador de reuniões</div></div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 12: RA/QM ==================== -->
+<section class="slide" id="raqm">
+  <div class="slide-num mono">12 / 14</div>
+  <div class="eyebrow neon">11 · REGULATÓRIO &amp; QUALIDADE</div>
+  <h2 class="slide-title">Setores regulados<br>em <span class="neon-text">14 skills.</span></h2>
+  <p class="lead">ISO 13485, MDR, FDA, ISO 27001, LGPD, SOC2, gestão de riscos (ISO 14971), CAPA, auditoria — cobertura para indústria regulada brasileira e internacional.</p>
+
+  <div class="domain-header">
+    <div class="ic">#</div>
+    <h3>Dispositivos Médicos &amp; Saúde</h3>
+    <div class="count">6 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">quality-manager-qms-iso13485</div><div class="desc">QMS ISO 13485</div></div>
+    <div class="skill-card"><div class="name">quality-manager-qmr</div><div class="desc">Quality Manager Representative</div></div>
+    <div class="skill-card"><div class="name">quality-documentation-manager</div><div class="desc">Documentação de qualidade</div></div>
+    <div class="skill-card"><div class="name">mdr-745-specialist</div><div class="desc">MDR 2017/745 (UE)</div></div>
+    <div class="skill-card"><div class="name">fda-consultant-specialist</div><div class="desc">FDA 510(k)/PMA (US)</div></div>
+    <div class="skill-card"><div class="name">regulatory-affairs-head</div><div class="desc">Head de Assuntos Regulatórios</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Qualidade, Riscos &amp; Auditoria</h3>
+    <div class="count">3 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">risk-management-specialist</div><div class="desc">ISO 14971 de riscos</div></div>
+    <div class="skill-card"><div class="name">capa-officer</div><div class="desc">CAPA (Corretiva/Preventiva)</div></div>
+    <div class="skill-card"><div class="name">qms-audit-expert</div><div class="desc">Auditoria QMS</div></div>
+  </div>
+
+  <div class="domain-header" style="margin-top:32px;">
+    <div class="ic">#</div>
+    <h3>Segurança da Informação &amp; Privacidade</h3>
+    <div class="count">5 skills</div>
+  </div>
+  <div class="grid-3">
+    <div class="skill-card"><div class="name">information-security-manager-iso27001</div><div class="desc">ISMS ISO 27001</div></div>
+    <div class="skill-card"><div class="name">isms-audit-expert</div><div class="desc">Auditoria ISMS</div></div>
+    <div class="skill-card"><div class="name">gdpr-dsgvo-expert</div><div class="desc">LGPD + GDPR</div></div>
+    <div class="skill-card"><div class="name">soc2-compliance</div><div class="desc">SOC 2 Type I/II</div></div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 13: HOW TO USE ==================== -->
+<section class="slide" id="how">
+  <div class="slide-num mono">13 / 14</div>
+  <div class="eyebrow neon">12 · WORKFLOW DIÁRIO</div>
+  <h2 class="slide-title">Como integrar no<br>seu <span class="neon-text">dia-a-dia.</span></h2>
+
+  <div class="grid-2">
+    <div class="panel">
+      <h3>1 · Persona única</h3>
+      <p style="color:var(--muted);margin-bottom:12px;">Carregue uma skill específica para uma sessão focada.</p>
+      <div class="code-block">
+<span class="cmd-prefix">&gt;</span> /read c-level-advisor/cfo-advisor/SKILL.md
+<span class="cmd-prefix">&gt;</span> Revise meu runway dado o burn
+  rate de R$ 450k/mês.
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>2 · Reunião de conselho</h3>
+      <p style="color:var(--muted);margin-bottom:12px;">Invoque o Chief of Staff para convocar múltiplos papéis.</p>
+      <div class="code-block">
+<span class="cmd-prefix">&gt;</span> /read c-level-advisor/chief-of-staff/SKILL.md
+<span class="cmd-prefix">&gt;</span> Decisão: devemos abrir capital
+  agora ou esperar 2027?
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>3 · Dev focused</h3>
+      <p style="color:var(--muted);margin-bottom:12px;">Combine skill técnica + TDD para implementação rigorosa.</p>
+      <div class="code-block">
+<span class="cmd-prefix">&gt;</span> /read engineering-team/senior-mobile-ios/SKILL.md
+<span class="cmd-prefix">&gt;</span> /read engineering-team/tdd-guide/SKILL.md
+<span class="cmd-prefix">&gt;</span> Implemente checkout com Apple Pay
+  em Swift 6 + SwiftUI.
+      </div>
+    </div>
+
+    <div class="panel accent">
+      <h3>4 · Comandos slash</h3>
+      <p style="color:var(--muted);margin-bottom:12px;">Atalhos prontos para tarefas recorrentes.</p>
+      <div class="code-block">
+<span class="cmd-prefix">&gt;</span> /prd "dashboard de churn para CS"
+<span class="cmd-prefix">&gt;</span> /rice feature-lista.md
+<span class="cmd-prefix">&gt;</span> /sprint-plan "entregar onboarding
+       do novo produto" 120h
+<span class="cmd-prefix">&gt;</span> /saas-health
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:32px;">
+    <h3>Combos poderosos (multi-skill)</h3>
+    <table>
+      <thead><tr><th>Objetivo</th><th>Skills a combinar</th></tr></thead>
+      <tbody>
+        <tr><td>Lançamento de SaaS</td><td><span class="mono">saas-scaffolder</span> + <span class="mono">senior-backend</span> + <span class="mono">landing-page-generator</span> + <span class="mono">paid-ads</span></td></tr>
+        <tr><td>Captação Série A</td><td><span class="mono">cfo-advisor</span> + <span class="mono">ceo-advisor</span> + <span class="mono">saas-metrics-coach</span> + <span class="mono">board-deck-builder</span></td></tr>
+        <tr><td>Fechamento fiscal BR</td><td><span class="mono">controller-contador</span> + <span class="mono">fpa-analyst</span></td></tr>
+        <tr><td>Incidente de produção</td><td><span class="mono">senior-sre</span> + <span class="mono">incident-commander</span> + <span class="mono">incident-response</span></td></tr>
+        <tr><td>Launch de produto</td><td><span class="mono">product-manager-toolkit</span> + <span class="mono">growth-product-manager</span> + <span class="mono">launch-strategy</span></td></tr>
+        <tr><td>Migração cloud</td><td><span class="mono">aws-solution-architect</span> + <span class="mono">migration-architect</span> + <span class="mono">program-manager</span></td></tr>
+        <tr><td>Compliance LGPD</td><td><span class="mono">gdpr-dsgvo-expert</span> + <span class="mono">cdo-advisor</span> + <span class="mono">clo-advisor</span></td></tr>
+        <tr><td>Adoção de IA corporativa</td><td><span class="mono">caio-advisor</span> + <span class="mono">rag-architect</span> + <span class="mono">ai-security</span> + <span class="mono">llm-cost-optimizer</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 14: FOOTER / CTA ==================== -->
+<section class="slide footer-slide" id="end">
+  <div class="slide-num mono">14 / 14</div>
+  <span class="brand-tag"><span class="dot"></span>READY TO SHIP</span>
+  <div class="big" style="margin-top:20px;">
+    <span class="neon-text">251 skills.</span><br>
+    1 comando: <span class="cyan-text">./install.sh</span>
+  </div>
+  <div class="sub">
+    Ric Neves — Flowgrammers · flowgrammers.com · Licença MIT · v2.1.0 — 2026-04-23
+  </div>
+  <div style="margin-top:36px;">
+    <span class="chip neon" style="font-size:13px;padding:8px 16px;">Zero dependências externas · Python stdlib only</span>
+    <span class="chip cyan" style="font-size:13px;padding:8px 16px;margin-left:8px;">100% PT-BR</span>
+    <span class="chip" style="font-size:13px;padding:8px 16px;margin-left:8px;">Apenas Claude Code</span>
+  </div>
+  <p style="margin-top:48px;color:var(--muted);font-family:var(--font-mono);font-size:12px;">
+    <span class="neon-text">★</span> skills marcadas são novas (v2.1.0) — cdo, caio, clo, senior-mobile-ios, senior-mobile-android, senior-sre, account-manager, partnerships-manager, controller-contador, fpa-analyst, growth-product-manager, program-manager
+  </p>
+</section>
+
+</main>
+
+<script>
+  // Cursor aura
+  (function() {
+    const aura = document.getElementById('aura');
+    if (!aura) return;
+    let mx = window.innerWidth/2, my = window.innerHeight/2;
+    let cx = mx, cy = my;
+    window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function tick() {
+      cx += (mx - cx) * 0.12;
+      cy += (my - cy) * 0.12;
+      aura.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  // Particles
+  (function() {
+    const container = document.getElementById('particles');
+    if (!container) return;
+    const COUNT = 24;
+    for (let i = 0; i < COUNT; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = (Math.random() * 100) + 'vw';
+      p.style.setProperty('--x', (Math.random() * 160 - 80) + 'px');
+      p.style.setProperty('--d', (14 + Math.random() * 16) + 's');
+      p.style.setProperty('--delay', (Math.random() * 20) + 's');
+      p.style.opacity = Math.random() * 0.5 + 0.3;
+      container.appendChild(p);
+    }
+  })();
+
+  // Smooth scroll
+  document.querySelectorAll('.nav-top a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
