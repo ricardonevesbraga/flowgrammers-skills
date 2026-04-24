@@ -375,7 +375,7 @@ EOF
 
 Skills criadas e adaptadas pela **Flowgrammers** para o mercado brasileiro.
 
-- Site: [flowgrammers.com](https://flowgrammers.com)
+- Site: [flowgrammers.com.br](https://flowgrammers.com.br)
 - Autor: Ric Neves — Flowgrammers
 - Versão: 2.1.0 ([changelog](CHANGELOG.md))
 - Licença: [MIT](LICENSE)
